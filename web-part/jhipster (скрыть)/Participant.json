@@ -1,0 +1,45 @@
+{
+  "name": "Participant",
+  "fields": [
+    {
+      "fieldName": "vkId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "fullName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "employer",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "team",
+      "otherEntityRelationshipName": "participant",
+      "relationshipName": "team",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201026183343",
+  "entityTableName": "participant",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

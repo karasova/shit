@@ -1,0 +1,58 @@
+{
+  "name": "Team",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "TeamStatus",
+      "fieldValues": "ADDED,CASE_SELECTION,CASE_SELECTED,REGISTRATION,REGISTERED,PARTICIPANTS_NEEDED,CANCELED",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "comment",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "participant",
+      "otherEntityRelationshipName": "team",
+      "relationshipName": "registrator",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "participant",
+      "otherEntityRelationshipName": "team",
+      "relationshipName": "participant"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "track",
+      "otherEntityRelationshipName": "team",
+      "relationshipName": "case",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201026183243",
+  "entityTableName": "team",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

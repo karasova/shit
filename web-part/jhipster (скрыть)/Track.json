@@ -1,0 +1,37 @@
+{
+  "name": "Track",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "team",
+      "otherEntityRelationshipName": "case",
+      "relationshipName": "team"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "mailingTask",
+      "otherEntityRelationshipName": "filterCase",
+      "relationshipName": "mailingTask"
+    }
+  ],
+  "changelogDate": "20201026183443",
+  "entityTableName": "track",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
