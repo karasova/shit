@@ -1,0 +1,9 @@
+{
+  "botApp": {
+    "MailingType": {
+      "null": "",
+      "STANDARD": "Обычная",
+      "SELECT_CASE": "Выбор кейса"
+    }
+  }
+}
