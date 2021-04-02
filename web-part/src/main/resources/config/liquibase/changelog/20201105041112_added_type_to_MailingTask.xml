@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added status field to entity MailingTask.
+    -->
+    <changeSet id="20201105041112-1" author="mikhail">
+        <addColumn tableName="mailing_task">
+            <column name="type" type="varchar(255)" defaultValue="STANDARD">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <sql>
+            ALTER TABLE mailing_task
+                ADD CONSTRAINT valid_combination CHECK (
+                        (mailing_task.type = 'SELECT_CASE' AND mailing_task.filter_status = 'REGISTERED') OR
+                        mailing_task.type = 'STANDARD'
+                    );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

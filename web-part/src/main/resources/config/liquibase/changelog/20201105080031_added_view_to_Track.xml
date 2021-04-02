@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added status field to entity MailingTask.
+    -->
+    <changeSet id="20201105080031-1" author="mikhail">
+        <sql>
+            CREATE VIEW track_free AS
+            WITH tmp(total) AS (
+                SELECT COUNT(*)
+                FROM team
+                WHERE team.status in ('CASE_SELECTION', 'CASE_SELECTED', 'REGISTERED')
+            )
+            SELECT COUNT(DISTINCT team.id)                                                        AS teams_count,
+                   t.id                                                                           AS track_id,
+                   tmp.total / COUNT(DISTINCT t.id || ' ' || t2.id) + 1 - COUNT(DISTINCT team.id) AS track_remaining,
+                   tmp.total / COUNT(DISTINCT t.id || ' ' || t2.id) + 1                           AS track_max
+            FROM tmp,
+                 track t
+                     CROSS JOIN track t2
+                     LEFT JOIN team on t.id = team.case_id
+            GROUP BY t.id, tmp.total;
+        </sql>
+        <rollback>
+            DROP VIEW track_free;
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
