@@ -1,0 +1,19 @@
+{
+  "seed": 123451,
+  "vk_ids": [
+    172349355
+  ],
+  "message": {
+    "text": "Some text",
+    "keyboard": {
+      "one_time" : false,
+      "type": "inline",
+      "items": [
+        {
+          "payload": "ACTION_SELECTCASE_1",
+          "text": "Button 1"
+        }
+      ]
+    }
+  }
+}
